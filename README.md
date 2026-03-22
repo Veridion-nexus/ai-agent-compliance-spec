@@ -31,6 +31,31 @@ This specification defines five core objects that together satisfy:
 | `ContextTrustAnnotation` | Trust level of agent context at decision time |
 | `HumanOversightRecord` | A human review or override of an agent decision |
 
+## Quick Example
+
+A single tool call that transfers personal data to a US-based LLM — the core compliance event in any EU AI agent deployment:
+
+```json
+{
+  "schema": "acm/tool-call-event/v0.1",
+  "event_id": "evt_a3f81b",
+  "agent_id": "agt_7f3a9c",
+  "tool_id": "openai_chat",
+  "called_at": "2026-03-20T11:34:52Z",
+  "inputs": {
+    "fields_requested": ["name", "email", "support_ticket"],
+    "data_subjects": 1,
+    "contains_special_categories": false
+  },
+  "context_trust": { "level": "trusted" },
+  "outcome": { "decision_made": false, "human_review_required": false },
+  "legal_basis": "legitimate_interests",
+  "purpose": "customer_support_summarisation"
+}
+```
+
+This event, combined with a `DataTransferRecord` (destination: US, mechanism: SCC) and an `AgentRecord`, constitutes a complete GDPR Art. 30 processing entry for that agent call.
+
 ## Read the Spec
 
 → **[spec/v0.1.md](spec/v0.1.md)**
