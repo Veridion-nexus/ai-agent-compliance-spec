@@ -1,41 +1,44 @@
 # Contributing to the AI Agent Compliance Data Model
 
-Thank you for your interest in contributing. This is an open specification — we want it to reflect the real needs of practitioners, not just one vendor's perspective.
+This is a draft specification. v0.1 defines five core objects. We need practitioners to stress-test it against real deployments before v0.2 locks the model.
 
-## How to Contribute
+We're looking for **implementers**, not just feedback.
 
-### Feedback on v0.1
+## Three specific things you can contribute right now
 
-The best way to contribute right now is to open an Issue:
+### 1. Implementation reports
+Are you building agent governance tooling? Tell us what you're implementing and where the spec doesn't fit. Open an issue tagged `implementation-report` and describe:
+- Which objects you're implementing (`AgentRecord`, `ToolCallEvent`, etc.)
+- What fields you had to add or drop
+- What regulatory requirement drove the gap
 
-- **Field missing or wrong?** Open an issue describing the gap and your use case.
-- **Regulatory mapping incorrect?** Cite the article and describe the correct interpretation.
-- **Implementation question?** Ask — we'll clarify and improve the spec based on common questions.
-- **Tool integration?** If you're implementing this in your tool, open an issue to let us know. We'll list compatible implementations.
+Implementation reports directly shape v0.2. If three implementers need the same field, it goes in.
 
-→ [Open an Issue](https://github.com/Veridion-nexus/ai-agent-compliance-spec/issues)
+### 2. Field proposals for v0.2
+The following areas are explicitly deferred from v0.1 and need real-world input:
 
-### Proposing Changes
+- **Consent records** — what does a consent event look like for an agent that processes data on behalf of a user?
+- **A2A delegation chains** — when Agent A delegates to Agent B, how do we track inherited trust and accountability?
+- **Cryptographic signing** — what's the minimal signing scheme that a DPO would accept as tamper-evident?
+- **National DPA reporting formats** — BfDI (Germany), CNIL (France), ICO (UK) all have different Art. 30 record formats. Can this spec map to all three?
+- **DSAR workflow events** — what does a data subject access request look like in an agentic system?
 
-For substantive changes to the data model:
+Open an issue tagged `v0.2-proposal` with your proposed field, type, and regulatory justification.
 
-1. Open an Issue first to discuss the change
-2. Fork the repo and create a branch: `proposal/your-change-name`
-3. Edit the spec in `spec/v0.1.md`
+### 3. Integration case studies
+If you integrate this data model with an existing tool — LangGuard, AgentLock, OpenTelemetry, a SIEM, a DPO portal — open an issue tagged `integration` describing:
+- What tool you integrated with
+- Which objects you used
+- What the integration produced
+
+We'll list confirmed integrations in the README.
+
+## How to propose a change
+
+1. Open an Issue first — describe the problem, not the solution
+2. Fork the repo, create a branch: `proposal/your-change-name`
+3. Edit `spec/v0.1.md` (or create `spec/v0.2-draft.md` for v0.2 proposals)
 4. Submit a Pull Request referencing the Issue
-
-### What We're Looking For in v0.2
-
-The following areas are explicitly out of scope for v0.1 and candidates for v0.2:
-
-- Consent records and withdrawal events
-- DSAR (Data Subject Access Request) workflow events
-- Agent-to-agent (A2A) delegation chains and inherited trust
-- Cryptographic signing of records
-- Retention and deletion schedules per record type
-- National DPA reporting format mappings (BfDI, CNIL, ICO, etc.)
-
-If you have requirements in any of these areas, open an Issue tagged `v0.2`.
 
 ## Principles
 
